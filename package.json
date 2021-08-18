@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/hayodavis/open-music/issues"
   },
-  "homepage": "https://github.com/hayodavis/open-music#readme"
+  "homepage": "https://github.com/hayodavis/open-music#readme",
+  "dependencies": {
+    "@hapi/hapi": "^20.1.5"
+  }
 }
