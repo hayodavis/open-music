@@ -1,24 +1,24 @@
 const { nanoid } = require('nanoid');
 
-class MusicService {
+class SongsService {
   constructor() {
-    this._music = [];
+    this._songs = [];
   }
 
-  addMusic({
+  addSong({
     title, year, performer, genre, duration,
   }) {
     const id = nanoid(16);
     const createdAt = new Date().toISOString();
     const updatedAt = createdAt;
 
-    const newMusic = {
+    const newSong = {
       id, title, year, performer, genre, duration, createdAt, updatedAt,
     };
 
-    this._music.push(newMusic);
+    this._songs.push(newSong);
 
-    const isSuccess = this._music.filter((music) => music.id === id).length > 0;
+    const isSuccess = this._songs.filter((song) => song.id === id).length > 0;
 
     if (!isSuccess) {
       throw new Error('Lagu gagal ditambahkan');
@@ -27,23 +27,23 @@ class MusicService {
     return id;
   }
 
-  getMusic() {
-    return this._music;
+  getSongs() {
+    return this._songs;
   }
 
-  getMusicById(id) {
-    const music = this._music.filter((n) => n.id === id)[0];
+  getSongById(id) {
+    const song = this._songs.filter((n) => n.id === id)[0];
 
-    if (!music) {
+    if (!song) {
       throw new Error('Lagu tidak ditemukan');
     }
-    return music;
+    return song;
   }
 
-  editMusicById(id, {
+  editSongById(id, {
     title, year, performer, genre, duration,
   }) {
-    const index = this._music.findIndex((music) => music.id === id);
+    const index = this._songs.findIndex((song) => song.id === id);
 
     if (index === -1) {
       throw new Error('Gagal memperbaharui lagu. Id tidak ditemukan');
@@ -62,15 +62,15 @@ class MusicService {
     };
   }
 
-  deleteMusicById(id) {
-    const index = this._music.findIndex((music) => music.id === id);
+  deleteSongById(id) {
+    const index = this._songs.findIndex((song) => song.id === id);
 
     if (index === -1) {
       throw new Error('Lagu gagal dihapus. Id tidak ditemukan');
     }
 
-    this._music.splice(index, 1);
+    this._songs.splice(index, 1);
   }
 }
 
-module.exports = MusicService;
+module.exports = SongsService;
