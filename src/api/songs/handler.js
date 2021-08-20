@@ -1,6 +1,12 @@
 class SongsHandler {
   constructor(service) {
     this._service = service;
+
+    this.postSongHandler = this.postSongHandler.bind(this);
+    this.getSongsHandler = this.getSongsHandler.bind(this);
+    this.getSongByIdHandler = this.getSongByIdHandler.bind(this);
+    this.putSongByIdHandler = this.putSongByIdHandler.bind(this);
+    this.deleteSongByIdHandler = this.deleteSongByIdHandler(this);
   }
 
   postSongHandler(request, h) {
@@ -94,7 +100,7 @@ class SongsHandler {
     } catch (error) {
       const response = h.response({
         status: 'fail',
-        message: 'lagu gagal dihapus. Id tidak ditemukan',
+        message: 'Catatan gagal dihapus. Id tidak ditemukan',
       });
       response.code(404);
       return response;
